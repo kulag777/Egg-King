@@ -31,7 +31,7 @@ Menu principal:
 6) Salir
 ````
 
-Segun la opcion que se seleccione, se abrira submenus:
+### Segun la opcion que se seleccione, se abrira submenus:
 ### 1) Nueva partida
 ````bash
 Elige un personaje:
@@ -40,35 +40,36 @@ Elige un personaje:
 3) Gogo
 4) Javi
 ````
-Despues de seleccionar el personaje mas le guste se abrira un submenu de opciones de objetos
+
+🡫🡫🡫🡫🡫🡫🡫
 ````bash
 Elige un tipo de objeto:
 1) Espada
 2) Armadura
 3) Escudo
 ````
-Segun el objeto que se seleccione, se pueden elegir las siguientes opciones
+### Segun el objeto que se seleccione, se pueden elegir las siguientes opciones:
 
 #### 1) Espada
 ````bash
 Elige un tipo de espada:
-1) Fuego
-2) Hielo
-3) Trueno
+1) Espada de Fuego
+2) Espada de Hielo
+3) Espada de Trueno
 ````
-### 2) Armadura
+#### 2) Armadura
 ````bash
 Elige un tipo de Armadura:
-1) Dragón
-2) Acero
-3) Diamante
+1) Armadura de Dragón
+2) Armadura de Acero
+3) Armadura de Diamante
 ````
-### 3) Escudo
+#### 3) Escudo
 ````bash
 Elige un tipo de Armadura:
-1) Acero
-2) Oro 
-3) Diamante
+1) Armadura de Plata
+2) Armadura de Oro 
+3) Armadura de Diamante
 ````
 
 ## --> Structs
