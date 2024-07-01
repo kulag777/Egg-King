@@ -57,6 +57,19 @@ Elige un tipo de espada:
 3) Trueno
 ````
 ### 2) Armadura
+````bash
+Elige un tipo de Armadura:
+1) Dragón
+2) Acero
+3) Diamante
+````
+### 3) Escudo
+````bash
+Elige un tipo de Armadura:
+1) Acero
+2) Oro 
+3) Diamante
+````
 
 ## --> Structs
 
