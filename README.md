@@ -85,6 +85,16 @@ Elige un tipo de Armadura:
 
 `6) Salir` Salir del juego.
 
+### --> ¿Como Jugar?
+
+Moverse arriba: W
+Moverse Derecha: A
+Moverse abajo: S
+Moverse Izquierda: D
+Ataque: H
+
+El objetivo del juego es simplemente sobrevivir las oleadas de enemigos, matandolos.
+
 ## --> Structs
 
 Estructura que guarda la informacion del personaje.
