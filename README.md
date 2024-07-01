@@ -19,9 +19,7 @@ Y luego darle al boton:
 ````console
 "Run"
 ````
-
 <br>
-
 
 ## --> MENU PRINCIPAL
 
@@ -37,7 +35,7 @@ Menu principal:
 ````
 
 ### Segun la opcion que se seleccione, se abriran distintos submenus:
-### 1) Nueva partida
+`1) Nueva partida` Iniciar una nueva partida
 ````bash
 Elige un personaje:
 1) Kulag
@@ -74,18 +72,18 @@ Elige un tipo de Armadura:
 2) Armadura de Oro 
 3) Armadura de Diamante
 ````
-#### Despues de seleccionar el objeto preferido, se inicia el juego automaticamente.
+### --> Despues de seleccionar el objeto preferido, se inicia el juego automaticamente. <---
+<br>
 
-### 2) Ver objetos
-Se mostrara los objetos disponibles para seleciconar antes de que se inicie la partida.
-### 3) Ver Habilidades
-Se mostrara las habilidades disponibles para cuando se sube de nivel mientras se juega.
-### 4) Créditos
-Se mostraran los creditos.
-### 5) Ajustes
-Se mostraran los ajustes disponibles.
-### 6) Salir
-Salir del juego.
+`2) Ver objetos` Se mostrara los objetos disponibles para seleciconar antes de que se inicie la partida.
+
+`3) Ver Habilidades` Se mostrara las habilidades disponibles para cuando se sube de nivel mientras se juega.
+
+`4) Créditos` Se mostraran los creditos.
+
+`5) Ajustes ` Se mostraran los ajustes disponibles.
+
+`6) Salir` Salir del juego.
 
 ## --> Structs
 
@@ -133,8 +131,6 @@ typedef struct {
 
 ````
 <br>
-
-
 
 ## --> PROTOTIPOS DE FUNCIONES EN C
 
@@ -234,7 +230,28 @@ def get_player_image(character, object_choice, tipo_choice):
 ## --> TDA´S
 Los TDAs cola y list en este código ayudan a gestionar de manera eficiente el inventario y las habilidades del jugador. La cola asegura que los objetos se procesen en el orden en que se obtienen, mientras que la lista permite una gestión flexible de las habilidades, permitiendo al jugador adquirir y utilizar nuevas habilidades a medida que avanza en el juego. Estos TDAs son esenciales para la organización y manipulación de datos en este juego estilo roguelike, proporcionando estructuras robustas y eficientes para las operaciones necesarias.
 
+## --> Posibles errores en la aplicación (Bugs)
+
+* Si llegas a reiniciar el programa en C y el programa en python no, ocurrira un error en la pantalla que se vera mal, esto se puede solucionar terminando el programa en python desde la shell apretando `ctrl + z` y ejecutando `python game.py` desde la Shell.
+* Si despues de jugar una partida intentas salir apretando la opcion 6 en el menu principal, el programa de PYTHON si finaliza mientras que el de C no. 
+
+
+
 ## --> CONTRIBUCIONES HECHAS POR CADA UNO
 
-<hr>
 <br>
+
+* Benjamin Espinoza : Yo personalmente me encarge de que el codigo de Python funcionara correctamente, y la logica del mismo la idee yo, que con la ayuda de los demas, el codigo funciona idealmente. Junto con esto las exportaciones que hay en C algunos los hice yo y otros los hizo cristobal. Tambien ayude en hacer el codigo de C, ayudando en errores y logica mal implementada.
+
+<br>
+
+* Cristobal Martinez: Yo me encarge de hacer el codigo de C, pense el como usar los distintos TDA's y como implementarlos para poder incluirlos y que funcionen. Tambien ayude en el codigo de Python, al tener que exportar informacion para que este lo lea de manera adecuada y que no muestre otra pantalla u otro menu.
+
+<br>
+
+* Javiera Muñoz : Yo me encargue de crear casi todos los sprites e implementarlos en el codigo de python junto a la ayuda de Cristobal que me ayudaba exportando la informacio de C a Python, implemente la funcion de la barra de vida, configure en C y Python la funcion para que al seleccionar personaje y objeto se muestre correctamente la combinacion que se eligio, tambien ayude con la logica del juego en C y solucione bugs que transcurrian durante la programacion del juego.
+
+<br>
+
+* Diego Rivera : Yo tambien fui el encargado de hacer sprites e implementarlos en el codigo de Python, ayude a organizar los nombres de los mismos para que se ejecute en el codigo de python, tambien ayude en la logica del juego en C, ayudando en la idea de los structs y solucionando bugs de la visualizacion del menu en el codigo.
+  

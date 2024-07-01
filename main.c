@@ -17,6 +17,8 @@
 
 #define MAX 30
 
+int leerArchivoMenu();
+
 void usarHabilidad(int mapa[MAX][MAX], Personaje *jugador, Enemigo *enemigos,
                    int *numEnemigos);
 
@@ -75,6 +77,11 @@ int main() {
   Personaje jugador = {0, 0, 0, 0, 0, 0, 1, queue_create(), list_create(), ""};
 
   menuPrincipal(mapa, &jugador);
+
+  if (leerArchivoMenu() == 99) {
+      printf("Opción de salir seleccionada en el menú principal. Terminando el juego...\n");
+      return 0;
+  }
   
   if (jugador.id == 0) 
   {
@@ -144,8 +151,11 @@ int main() {
       actualizarMenuActualCSV(15);
       sleep(5);
       menuPrincipal(mapa, &jugador);
-      setNonBlockingMode(1);
+          return 0;
     }
+
+      setNonBlockingMode(1);
+    
   }
 
   setNonBlockingMode(0);
@@ -636,7 +646,6 @@ void elegirHabilidad(Personaje *jugador) {
     printf("%d. %s - %s\n", i + 1, habilidades[i].nombre,
            habilidades[i].efecto);
   }
-
   int seleccion = elegirOpcion(3, 9); // menu de elegir habilidad
 
   if (seleccion >= 1 && seleccion <= numHabilidades) {
@@ -651,10 +660,10 @@ void elegirHabilidad(Personaje *jugador) {
     if (seleccion - 1 == 0) {
       aplicarDefensaSolida(jugador, nuevaHabilidad->efectoValor);
     }
-    if (seleccion - 1 == 0) {
+    else if (seleccion - 1 == 1) {
       aplicarRegeneracion(jugador, nuevaHabilidad->efectoValor);
     }
-    if (seleccion - 1 == 0) {
+    else if (seleccion - 1 == 2) {
       aplicarFuerzaBruta(jugador, nuevaHabilidad->efectoValor);
     }
   } else {
@@ -682,11 +691,9 @@ void ganarExperiencia(Personaje *jugador, int exp) {
   }
 }
 
-void usarHabilidad(int mapa[MAX][MAX], Personaje *jugador, Enemigo *enemigos,
-                   int *numEnemigos) {
+void usarHabilidad(int mapa[MAX][MAX], Personaje *jugador, Enemigo *enemigos, int *numEnemigos) {
   int enemigosAfectados = 0;
   int rangoAtaque = 2; // Definir el rango de ataque (ajustar según necesidad)
-
   for (int i = 0; i < *numEnemigos; i++) {
     // Asegurarse de que el enemigo está en el mapa y no es el jugador mismo
     if (mapa[enemigos[i].x][enemigos[i].y] != 0 &&
@@ -717,4 +724,18 @@ void usarHabilidad(int mapa[MAX][MAX], Personaje *jugador, Enemigo *enemigos,
       }
     }
   }
+}
+
+int leerArchivoMenu() {
+    FILE *archivo = fopen("Python/registro_menu.csv", "r");
+    if (archivo == NULL) {
+        perror("No se pudo abrir el archivo de registro del menú.");
+        return -1;
+    }
+
+    int seleccionada;
+    fscanf(archivo, "%d", &seleccionada);
+    fclose(archivo);
+
+    return seleccionada;
 }
