@@ -5,6 +5,11 @@ Para ejecutar el juego hay que usar estos comandos en la shell:
 cd Python
 ````
 
+Escribir:
+````console
+pip install pygame
+````
+
 luego escribir:
 ````console
 python game.py
@@ -31,7 +36,7 @@ Menu principal:
 6) Salir
 ````
 
-### Segun la opcion que se seleccione, se abrira submenus:
+### Segun la opcion que se seleccione, se abriran distintos submenus:
 ### 1) Nueva partida
 ````bash
 Elige un personaje:
@@ -40,16 +45,14 @@ Elige un personaje:
 3) Gogo
 4) Javi
 ````
-
-🡫🡫🡫🡫🡫🡫🡫
+🡫🡫🡫🡫🡫🡫🡫 
 ````bash
 Elige un tipo de objeto:
 1) Espada
 2) Armadura
 3) Escudo
 ````
-### Segun el objeto que se seleccione, se pueden elegir las siguientes opciones:
-
+🡫🡫🡫🡫🡫🡫🡫
 #### 1) Espada
 ````bash
 Elige un tipo de espada:
@@ -71,6 +74,18 @@ Elige un tipo de Armadura:
 2) Armadura de Oro 
 3) Armadura de Diamante
 ````
+#### Despues de seleccionar el objeto preferido, se inicia el juego automaticamente.
+
+### 2) Ver objetos
+Se mostrara los objetos disponibles para seleciconar antes de que se inicie la partida.
+### 3) Ver Habilidades
+Se mostrara las habilidades disponibles para cuando se sube de nivel mientras se juega.
+### 4) Créditos
+Se mostraran los creditos.
+### 5) Ajustes
+Se mostraran los ajustes disponibles.
+### 6) Salir
+Salir del juego.
 
 ## --> Structs
 
@@ -123,95 +138,103 @@ typedef struct {
 
 ## --> PROTOTIPOS DE FUNCIONES EN C
 
-`void aplicarDefensaSolida(Personaje *jugador, int aumentoVidaMax);`
+### Aplicar y exportar habilidades
+````c
+void aplicarDefensaSolida(Personaje *jugador, int aumentoVidaMax); 
 
-`void aplicarRegeneracion(Personaje *jugador, int regeneracion);`
+void aplicarRegeneracion(Personaje *jugador, int regeneracion);
 
-`void aplicarFuerzaBruta(Personaje *jugador, int aumentoDanio);`
+void aplicarFuerzaBruta(Personaje *jugador, int aumentoDanio);
 
-`void exportarHabilidades(Personaje *jugador);`
+void exportarHabilidades(Personaje *jugador);
+````
+### Funciones que sirven para mostrar en el Python
+##### Actualiza los CSV
+````c
+void actualizarCSV(int seleccionada);
 
-`void exportarVida(int vida);`
+void actualizarMenuActualCSV(int menuID); 
 
-`void menuMuerte(Personaje *jugador);`
+void exportarVida(int vida);
 
-`void setNonBlockingMode(int enable);`
+void menuMuerte(Personaje *jugador); 
 
-`void limpiarBufferEntrada();`
+void exportarDatos(int mapa[MAX][MAX], Personaje *jugador);
+````
+##### Acciones del jugador
+````c
+Personaje elegirPersonaje();
 
-`void actualizarCSV(int seleccionada);`
+int elegirOpcion(int opciones, int menuID);
 
-`void actualizarMenuActualCSV(int menuID);`
+void moverPersonaje(Personaje *jugador, int mapa[MAX][MAX], char direccion);
 
-`int elegirOpcion(int opciones, int menuID);`
+void elegirObjeto(Personaje *jugador);
 
-`void mostrarHabilidades(Personaje *jugador);`
+void aplicarEfectoObjeto(Personaje *jugador, int tipoObjeto, int efecto);
 
-`void mostrarMenu();`
+````
+##### Acciones del juego
+````c
+void mostrarMenu();
 
-`Personaje elegirPersonaje();`
+void inicializarMapa(int mapa[MAX][MAX]);
 
-`void inicializarMapa(int mapa[MAX][MAX]);`
+void generarEnemigos(Enemigo *enemigos, int numEnemigos, Personaje *jugador, int mapa[MAX][MAX]);
 
-`void moverPersonaje(Personaje *jugador, int mapa[MAX][MAX], char direccion);`
+int randRange(int min, int max);
 
-`int randRange(int min, int max);`
+void moverEnemigos(Enemigo *enemigos, int numEnemigos, Personaje *jugador, int mapa[MAX][MAX]);
 
-`void generarEnemigos(Enemigo *enemigos, int numEnemigos, Personaje *jugador, int mapa[MAX][MAX]);`
+````
+##### Extras
+````c
+void limpiarBufferEntrada();
 
-`void moverEnemigos(Enemigo *enemigos, int numEnemigos, Personaje *jugador, int mapa[MAX][MAX]);`
-
-`void exportarDatos(int mapa[MAX][MAX], Personaje *jugador);`
-
-`void aplicarEfectoObjeto(Personaje *jugador, int tipoObjeto, int efecto);`
-
-`void elegirObjeto(Personaje *jugador);`
-
-<br>
-
+void setNonBlockingMode(int enable);
+````
 ## --> PROTOTIPOS DE FUNCIONES EN PYTHON
 
-`def read_actual_menu_from_csv(filename):`
+### Leer archivos CSV 
+````python
+def read_actual_menu_from_csv(filename):
 
-`def read_menu_from_csv(filename):`
+def read_menu_from_csv(filename):
 
-`def read_map_from_csv(filename):`
+def read_map_from_csv(filename):
+  
+def read_character_choice_from_csv(filename):
+````
+### Mostrar texturas en Output
+````python
+def draw_menu_principal(screen):
+  
+def draw_players(screen):
+  
+def draw_choose_weapon(screen):
 
-`def draw_menu_principal(screen):`
+def draw_death_menu(screen):
 
-`def draw_players(screen):`
+def draw_creditos(screen):
 
-`def draw_choose_weapon(screen):`
+def draw_Habilidades(screen):
 
-`def draw_death_menu(screen):`
+def draw_exitGame(screen):
 
-`def creditos(screen):`
+def draw_objects(screen):
+  
+def draw_map(screen, map, character, object_choice, tipo_choice, vidaActual):
 
-`def draw_Habilidades(screen):`
+def draw_object_menu(screen):
 
-`def exitGame(screen):`
+def draw_config(screen):
 
-`def draw_objects(screen):`
-
-`def get_player_image(character, object_choice, tipo_choice):`
-
-`def read_character_choice_from_csv(filename):`
-
-`def draw_map(screen, map, character, object_choice, tipo_choice, vidaActual):`
-
-`def draw_object_menu(screen):`
-
-`def draw_config(screen):`
-
-<hr>
-
-<br>
-
+def get_player_image(character, object_choice, tipo_choice):
+````
 ## --> TDA´S
-En la carpeta `tdas` se encuentran implementados los TDAs que fueron usado para programar el juego 
+Los TDAs cola y list en este código ayudan a gestionar de manera eficiente el inventario y las habilidades del jugador. La cola asegura que los objetos se procesen en el orden en que se obtienen, mientras que la lista permite una gestión flexible de las habilidades, permitiendo al jugador adquirir y utilizar nuevas habilidades a medida que avanza en el juego. Estos TDAs son esenciales para la organización y manipulación de datos en este juego estilo roguelike, proporcionando estructuras robustas y eficientes para las operaciones necesarias.
 
 ## --> CONTRIBUCIONES HECHAS POR CADA UNO
 
-## --> CREDITOS  
 <hr>
 <br>

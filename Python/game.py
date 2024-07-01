@@ -8,6 +8,7 @@ import sys
 personajes = {7: 'Kulag', 8: 'Cris', 9: 'Gogo', 10: 'Javi'}
 
 
+## LEER CSV DEL JUEGO
 def read_actual_menu_from_csv(filename):
     with open(filename, newline='') as csvfile:
         reader = csv.reader(csvfile)
@@ -24,7 +25,6 @@ def read_menu_from_csv(filename):
     return 0
 
 
-## LEER CSV DEL JUEGO
 def read_map_from_csv(filename):
     """Lee el mapa desde un archivo CSV y lo convierte en una matriz."""
     with open(filename, newline='') as csvfile:
@@ -37,7 +37,24 @@ def read_map_from_csv(filename):
     return map
 
 
-## DIBUJAR EL MENU PRINCIPAL
+def read_character_choice_from_csv(filename):
+    """Lee el archivo CSV que contiene la elección del personaje."""
+    with open(filename, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            return row[0].strip(
+            )  # Retorna el contenido completo de la primera celda, sin espacios adicionales
+
+
+# Función para obtener la imagen del jugador segun el objeto seleccionado
+def get_player_image(character, object_choice, tipo_choice):
+    base_path = 'imagenes/'
+    return pygame.image.load(
+        f'{base_path}{object_choice}{tipo_choice}{character}.png'
+    ).convert_alpha()
+
+
+## DIBUJAR LOS DISTINTOS MENUS
 def draw_menu_principal(screen):
     """Dibuja el menú en la pantalla."""
     background = pygame.image.load('imagenes/menu/menu1.png').convert()
@@ -64,7 +81,7 @@ def draw_death_menu(screen):
     screen.blit(background, (0, 0))
 
 
-def creditos(screen):
+def draw_creditos(screen):
     """Dibuja los creditos."""
     background = pygame.image.load('imagenes/menu/creditos.png').convert()
     screen.blit(background, (0, 0))
@@ -77,7 +94,7 @@ def draw_Habilidades(screen):
     screen.blit(background, (0, 0))
 
 
-def exitGame(screen):
+def draw_exitGame(screen):
     """dibuja la despedida."""
     background = pygame.image.load('imagenes/menu/salida.png').convert()
     screen.blit(background, (0, 0))
@@ -89,21 +106,16 @@ def draw_objects(screen):
     screen.blit(background, (0, 0))
 
 
-# Función para obtener la imagen del jugador según la elección
-def get_player_image(character, object_choice, tipo_choice):
-    base_path = 'imagenes/'
-    return pygame.image.load(
-        f'{base_path}{object_choice}{tipo_choice}{character}.png'
-    ).convert_alpha()
+def draw_object_menu(screen):
+    """Dibuja los objetos en la pantalla."""
+    background = pygame.image.load('imagenes/menu/verObjetos.png').convert()
+    screen.blit(background, (0, 0))
 
 
-def read_character_choice_from_csv(filename):
-    """Lee el archivo CSV que contiene la elección del personaje."""
-    with open(filename, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        for row in reader:
-            return row[0].strip(
-            )  # Retorna el contenido completo de la primera celda, sin espacios adicionales
+def draw_config(screen):
+    """Dibuja los ajustes."""
+    background = pygame.image.load('imagenes/menu/ajustes.png').convert()
+    screen.blit(background, (0, 0))
 
 
 def draw_map(screen, map, character, object_choice, tipo_choice, vidaActual):
@@ -147,19 +159,6 @@ def draw_map(screen, map, character, object_choice, tipo_choice, vidaActual):
                 screen.blit(enemy_image, (x * C.TILE_SIZE, y * C.TILE_SIZE))
 
 
-def draw_object_menu(screen):
-    """Dibuja los objetos en la pantalla."""
-    background = pygame.image.load('imagenes/menu/verObjetos.png').convert()
-    screen.blit(background, (0, 0))
-
-
-def draw_config(screen):
-    """Dibuja los ajustes."""
-    background = pygame.image.load('imagenes/menu/ajustes.png').convert()
-    screen.blit(background, (0, 0))
-
-
-## DIBUJAR EL JUEGO
 def main():
     """Función principal para inicializar pygame y correr el juego."""
     pygame.init()
@@ -311,7 +310,7 @@ def main():
 
         elif menuActual == 12:  # CREDITOS
             screen.fill(C.BACKGROUND_COLOR)
-            creditos(screen)
+            draw_creditos(screen)
             pygame.display.flip()
             pygame.time.wait(5000)
 
@@ -323,7 +322,7 @@ def main():
 
         elif menuActual == 99:  # SALIR
             screen.fill(C.BACKGROUND_COLOR)
-            exitGame(screen)
+            draw_exitGame(screen)
             pygame.display.flip()
             pygame.time.wait(5000)
             pygame.quit()  #FINALIZA EL JUEGO Y EL PYTHON

@@ -75,7 +75,9 @@ int main() {
   Personaje jugador = {0, 0, 0, 0, 0, 0, 1, queue_create(), list_create(), ""};
 
   menuPrincipal(mapa, &jugador);
-  if (jugador.id == 0) {
+  
+  if (jugador.id == 0) 
+  {
     return 0;
   }
 
@@ -134,8 +136,10 @@ int main() {
       gettimeofday(&lastEnemyMoveTime, NULL);
     }
     exportarDatos(mapa, &jugador);
-    if (jugador.vida <= 0) {
+    if (jugador.vida <= 0) 
+    {
       setNonBlockingMode(0);
+      menuMuerte(&jugador);
       printf("Has muerto. Fin del juego.\n");
       actualizarMenuActualCSV(15);
       sleep(5);
@@ -250,8 +254,7 @@ void actualizarCSV(int seleccionada) {
   fclose(archivo);
 }
 
-// Función para prinetar el menú en donde el usuario se encuentra para poder
-// mostrarlo en el codigo de python
+//Actualiza menuActual, CSV escencial para mostrarle el menu principal y submenus al jugador.
 void actualizarMenuActualCSV(int menuID) {
   FILE *archivo = fopen("Python/menuActual.csv", "w");
   if (archivo == NULL) {
@@ -375,7 +378,7 @@ void moverPersonaje(Personaje *jugador, int mapa[MAX][MAX], char direccion) {
   }
 }
 
-// Función para generar un número aleatorio dentro de un rango
+// Función para generar un número aleatorio dentro de un rango, sirve al generar enemigos
 int randRange(int min, int max) { return rand() % (max - min + 1) + min; }
 
 // Función para generar enemigos dentro de un rango alrededor del jugador
@@ -704,6 +707,7 @@ void usarHabilidad(int mapa[MAX][MAX], Personaje *jugador, Enemigo *enemigos,
           for (int j = i; j < *numEnemigos - 1; j++) {
             enemigos[j] = enemigos[j + 1];
           }
+          enemigosAfectados++;
           (*numEnemigos)--;
           ganarExperiencia(jugador, (enemigosAfectados * 10));
           i--; // Ajustar el índice después de eliminar
